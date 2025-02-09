@@ -1,16 +1,3 @@
-/*
-*    C Calculator With Lexer
-*    
-*    Example inputs/outputs:
-*
-*    Input: (12 + 5) * 6 + 12 / 3  - 100
-*    Output: The result: 6
-*
-*    Input: (12 + 5) * 39 * ( 12 - 4
-*    Output: The result: 663 * ( 8 
-*    
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
