@@ -4,10 +4,10 @@
 *    Example inputs/outputs:
 *
 *    Input: (12 + 5) * 6 + 12 / 3  - 100
-*    Output: 6
+*    Output: The result: 6
 *
 *    Input: (12 + 5) * 39 * ( 12 - 4
-*    Output: 663 * ( 8 
+*    Output: The result: 663 * ( 8 
 *    
 */
 
