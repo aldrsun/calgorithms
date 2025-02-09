@@ -2,7 +2,7 @@
 
 Example inputs/outputs:
 
-```bash
+```terminal
 $ ./calculator
 Enter an expression: (12 + 5) * 6 + 12 / 3  - 100
 The result: 6
