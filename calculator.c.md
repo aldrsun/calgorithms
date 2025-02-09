@@ -1,4 +1,4 @@
-#C Calculator With Lexer
+# C Calculator With Lexer
 
 Example inputs/outputs:
 
