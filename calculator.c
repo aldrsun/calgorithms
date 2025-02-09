@@ -221,7 +221,7 @@ int tokenize(Token **tokens, const char* buffer, unsigned long buffer_size) {
 int main(void) {
     const int maxBufferSize = 256;
     char buffer[maxBufferSize];
-    printf("Enter a number: ");
+    printf("Enter an expression: ");
     fgets(buffer, maxBufferSize, stdin);
 
     const unsigned long length = strlen(buffer);
