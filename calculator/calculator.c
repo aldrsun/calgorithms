@@ -4,6 +4,7 @@
 
 typedef enum {
     EMPTY,
+    UNKNOWN,
     PAR_OPEN,
     PAR_CLOSE,
     NUM,
@@ -198,7 +199,9 @@ int tokenize(Token **tokens, const char* buffer, unsigned long buffer_size) {
             i --;
         } else {
             if (buffer[i] != 10) {
-                printf("Character at position %d: %c (ASCII: %d)\n", i, buffer[i], buffer[i]);
+                Token *token = createToken(UNKNOWN, 0, "UNKNOWN", '?');
+                tokens[token_count] = token;
+                token_count++;
             }
         }
     }
@@ -206,40 +209,44 @@ int tokenize(Token **tokens, const char* buffer, unsigned long buffer_size) {
 }
 
 int main(void) {
-    const int maxBufferSize = 256;
-    char buffer[maxBufferSize];
-    printf("Enter an expression: ");
-    fgets(buffer, maxBufferSize, stdin);
+    while (1) {
+        const int maxBufferSize = 256;
+        char buffer[maxBufferSize];
+        printf("> ");
+        fgets(buffer, maxBufferSize, stdin);
 
-    const unsigned long length = strlen(buffer);
+        const unsigned long length = strlen(buffer);
 
-    // TOKENIZE
-    const int max_tokens = 255;
-    Token **tokens = malloc(max_tokens * sizeof(Token *));
-    int token_count = tokenize(tokens, buffer, length);
 
-    for (int i = token_count; i < max_tokens; i++) {
-        free(tokens[i]);
-    }
-
-    for (int i = 0; i < 100; i ++) {
-        int changed = iterateCalculation(tokens, &token_count);
-        if (changed == 0) {
-            break;
+	    // CHECK IF 'exit'
+        if (length == 5)  { // 'exit\n'
+            if (buffer[0] == 'e' && buffer[1] == 'x' && buffer[2] == 'i' && buffer[3] == 't')
+                break;
         }
-        if (i == 99) {
-            printf("Maximum depth reached!\nExiting...\n");
+
+        // TOKENIZE
+        const int max_tokens = 255;
+        Token **tokens = malloc(max_tokens * sizeof(Token *));
+        int token_count = tokenize(tokens, buffer, length);
+
+        for (int i = 0; i < 100; i ++) {
+            const int changed = iterateCalculation(tokens, &token_count);
+            if (changed == 0) {
+                break;
+            }
+            if (i == 99) {
+                printf("Maximum depth reached!\nExiting...\n");
+            }
         }
+
+        printTokenListWithIdentifiers(tokens, token_count);
+
+        for (int i = 0; i < token_count; i++) {
+            free(tokens[i]->name);
+            free(tokens[i]);
+        }
+        free(tokens);
     }
-
-    printf("The result: ");
-    printTokenListWithIdentifiers(tokens, token_count);
-
-    for (int i = 0; i < token_count; i++) {
-        free(tokens[i]->name);
-        free(tokens[i]);
-    }
-    free(tokens);
-
+    printf("Exiting.\n");
     return 0;
 }
