@@ -4,8 +4,8 @@ Example inputs/outputs:
 
 ```terminal
 $ ./calculator
-Enter an expression: (12 + 5) * 6 + 12 / 3  - 100
-The result: 6
-$ ./calculator
-Enter an expression: (12 + 5) * 39 * ( 12 - 4
-The result: 663 * ( 8
+> (12 + 5) * 6 + 12 / 3  - 100
+6 
+> (12 + 5) * 39 * ( 12 - 4
+663 * ( 8 
+> 
